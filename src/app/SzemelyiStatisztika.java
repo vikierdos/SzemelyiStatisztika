@@ -18,9 +18,9 @@ public class SzemelyiStatisztika {
         életkor: 2026 -
         nyugdíjig hátralévő évek száma : 65
         */
-        String[] koszonesek = {"Jónapot", "Szervusz", "Helló"};
+        boolean keveres = true;
         koszontes(nev);
-        koszontes(nev, koszonesek);
+        koszontes(nev, keveres);
         
         if(!hatvanotAlatt(szulEv)){
             throw new IllegalArgumentException("Már elérte a nyugdíj határt ez a személy");
@@ -45,15 +45,22 @@ public class SzemelyiStatisztika {
     }
     
     private static void koszontes(String nev){
-        kiir("Szia " + nev + "!\n");
+        koszontes(nev, false);
     }
     
-    private static void koszontes(String nev, String[] koszonesek) {
-        int koszontesSzam = (int) ((Math.random()*(3-0))+ 0);
+    private static void koszontes(String nev, boolean keveres) {
         
-        kiir(koszonesek[koszontesSzam] + " " + nev + "!\n");
+        String[] koszonesek = {"Jónapot", "Szervusz", "Helló"};
+        
+        String koszones = koszonesek[0];
+        if(keveres){
+        int koszontesSzam = (int) (Math.random()*koszonesek.length);
+        koszones = koszonesek[koszontesSzam];
+        }
+
+        kiir(koszones + " " + nev + "!\n");
+        
     }
-    
     
     private static int eletkor(int szulEv){
         return 2026-szulEv;
